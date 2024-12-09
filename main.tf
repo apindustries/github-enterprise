@@ -37,8 +37,8 @@ locals {
 
 resource "github_organization_settings" "org" {
   name                                    = "ArmandoPitotti0090"
-  billing_email                           = "aaron.arroyo@kantar.com"
-  blog                                    = "https://www.kantar.com/"
+  billing_email                           = "armando_pitotti@epam.com"
+  blog                                    = ""
   default_repository_permission           = "none"
   has_organization_projects               = false
   has_repository_projects                 = false
