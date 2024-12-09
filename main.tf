@@ -135,7 +135,7 @@ resource "github_repository" "tfmod_repo" {
 
 resource "github_team_repository" "tfmod_team_repo" {
   for_each   = var.tf_module_repos
-  team_id    = github_team.team["Cloud Enablement"].id
+  team_id    = github_team.team["Cloud Ops"].id
   repository = github_repository.tfmod_repo[each.value].name
   permission = "push"
 }
