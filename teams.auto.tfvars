@@ -1,8 +1,8 @@
 teams = [
   {
-    name = "Cloud Ops Admin"
+    name    = "Cloud Ops Admin"
     members = ["ArmandoPitotti"]
-    repos = [ "github-enterprise" ]
+    repos   = ["github-enterprise"]
   },
   {
     name    = "Cloud Ops"
