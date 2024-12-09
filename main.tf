@@ -36,7 +36,7 @@ locals {
 }
 
 resource "github_organization_settings" "org" {
-  name                                    = "Kantar Worldpanel"
+  name                                    = "ArmandoPitotti0090"
   billing_email                           = "aaron.arroyo@kantar.com"
   blog                                    = "https://www.kantar.com/"
   default_repository_permission           = "none"
