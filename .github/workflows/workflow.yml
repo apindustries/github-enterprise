@@ -44,6 +44,22 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false
 
+      - name: Manual Workflow Approval
+        uses: trstringer/manual-approval@v1.9.1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: armando_pitotti@epam.com, armando.pitotti@gmail.com
+          minimum-approvals: 1
+          issue-title: "Deploy 'github-enterprise'"
+          issue-body: "Please approve or deny the deployment of 'github-enterprise'."
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ''
+          additional-denied-words: ''  
+
       - name: Terraform Apply
-        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve -input=false
+
+      # - name: Terraform Apply
+      #   if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+      #   run: terraform apply -auto-approve -input=false
