@@ -8,9 +8,9 @@ terraform {
   }
 
   backend "azurerm" {
-    subscription_id      = "5cbe474c-dccc-41c5-b910-d6af4ae286ae"
-    resource_group_name  = "kw-cloudops-neu-dev-rsg"
-    storage_account_name = "saneudevcloudstd01"
+    subscription_id      = "f401adca-63c1-44e1-9aa3-9c9d18d3fc1b"
+    resource_group_name  = "rg-iac-backend"
+    storage_account_name = "tfbackendepamarmpit"
     container_name       = "github-enterprise"
     key                  = "terraform.tfstate"
   }
