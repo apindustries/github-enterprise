@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      #GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       ARM_USE_OIDC: true
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
