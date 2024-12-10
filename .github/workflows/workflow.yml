@@ -46,6 +46,7 @@ jobs:
 
       - name: Manual Workflow Approval
         uses: trstringer/manual-approval@v1.9.1
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           secret: ${{ github.TOKEN }}
           approvers: armando.pitotti@gmail.com, armando.pitotti@tiscali.it
