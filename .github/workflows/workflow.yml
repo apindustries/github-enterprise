@@ -52,8 +52,8 @@ jobs:
           secret: ${{ secrets.GITHUB_TOKEN }}
           approvers: DevOps #ArmandoPitotti,ArmandoPitotti02
           minimum-approvals: 1
-          issue-title: "Deploy 'github-enterprise'"
-          issue-body: "Please approve or deny the deployment of 'github-enterprise'."
+          issue-title: "Deploy"
+          issue-body: "Please approve or deny the deployment"
           exclude-workflow-initiator-as-approver: false
           additional-approved-words: ''
           additional-denied-words: ''  
