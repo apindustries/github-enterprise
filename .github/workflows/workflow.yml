@@ -16,6 +16,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ARM_USE_OIDC: true
