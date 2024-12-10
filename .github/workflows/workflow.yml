@@ -48,7 +48,7 @@ jobs:
         uses: trstringer/manual-approval@v1.9.1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: armando_pitotti@epam.com, armando.pitotti@gmail.com
+          approvers: armando.pitotti@gmail.com, armando.pitotti@tiscali.it
           minimum-approvals: 1
           issue-title: "Deploy 'github-enterprise'"
           issue-body: "Please approve or deny the deployment of 'github-enterprise'."
