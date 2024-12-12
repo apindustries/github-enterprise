@@ -12,7 +12,7 @@ permissions:
   issues: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     environment:
       name: 'github-enterprises-deploy'
@@ -34,7 +34,6 @@ jobs:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-          environment: AzureCloud
 
       - name: Terraform Init
         run: terraform init
