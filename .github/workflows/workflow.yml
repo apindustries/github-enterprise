@@ -43,21 +43,20 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false 
 
-      - name: Manual Workflow Approval
-        uses: trstringer/manual-approval@v1.9.1
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          secret: ${{ secrets.GITHUB_TOKEN }}
-          approvers: DevOps #ArmandoPitotti,ArmandoPitotti02
-          minimum-approvals: 1
-          issue-title: "Deploy"
-          issue-body: "Please approve or deny the deployment"
-          exclude-workflow-initiator-as-approver: false
-          additional-approved-words: ''
-          additional-denied-words: ''  
-
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'github-enterprises-deploy'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ARM_USE_OIDC: true
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}    
+    steps:
       - name: Terraform Apply
         if: ${{ github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve -input=false
