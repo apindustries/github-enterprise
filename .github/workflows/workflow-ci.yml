@@ -36,6 +36,7 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           environment: AzureCloud
 
+
       - name: Terraform Init
         run: terraform init
 
