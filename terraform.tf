@@ -17,5 +17,5 @@ terraform {
 }
 
 provider "github" {
-  owner = "KantarWorldpanel"
+  owner = "apindustries"
 }
