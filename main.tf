@@ -36,7 +36,7 @@ locals {
 }
 
 resource "github_organization_settings" "org" {
-  name                                    = "ArmandoPitotti0090"
+  name                                    = "apindustries"
   billing_email                           = "armando_pitotti@epam.com"
   blog                                    = ""
   default_repository_permission           = "none"
