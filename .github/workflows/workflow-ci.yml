@@ -5,20 +5,15 @@ on:
     branches:
       - main
 
-  # id-token: write
-  # contents: write
-  # repository-projects: write
-  # issues: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
       name: 'github-enterprises-deploy'
-    permissions: write-all      
+    permissions: write-all      # This is the permissions level for the job
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      ARM_USE_OIDC: true
+      ARM_USE_OIDC: true # This is required for GitHub Actions to authenticate in Azure using Microsoft's Entra ID application(ARM_CLIENT_ID).
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
