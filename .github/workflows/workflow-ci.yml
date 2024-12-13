@@ -18,7 +18,7 @@ jobs:
     permissions: write-all      
     env:
       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # ARM_USE_OIDC: true
+      ARM_USE_OIDC: true
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
