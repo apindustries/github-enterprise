@@ -52,4 +52,4 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve -input=false
         env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
