@@ -20,6 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -31,11 +32,6 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           environment: AzureCloud
 
-
-
-
-
-
       - name: Terraform Init
         run: terraform init
 
@@ -45,6 +41,15 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false 
 
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.ORGMGM_REPOS_01_APPID }}
+          private-key: ${{ secrets.ORGMGM_REPOS_01_PKEY }}
+       
       - name: Terraform Apply
         if: ${{ github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve -input=false
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
