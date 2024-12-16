@@ -45,7 +45,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.ORGMGM_REPOS_01_APPID }}
+          app-id: ${{ vars.ORGMGM_REPOS_01_APPID }}
           private-key: ${{ secrets.ORGMGM_REPOS_01_PKEY }}
        
       - name: Terraform Apply
