@@ -1,3 +1,12 @@
+variable "github_plan" {
+  type = string
+  default = "Team"
+  validation {
+    condition = contains(["Free", "Team", "Enterprise"], var.github_plan)
+    error_message = "Invalid GitHub plan. Must be one of: Free, Team, Enterprise"
+  }
+  
+}
 variable "admins" {
   type = set(string)
 }

@@ -100,17 +100,17 @@ data "github_user" "member-user" {
 }
 
 # 422 Only organizations associated with an enterprise can set visibility to internal [{Resource:Repository Field:name Code:custom Message:name already exists on this account}]
-# resource "github_repository" "github-enterprise" {
-#   name       = "github-enterprise"
-#   visibility = "internal"
-# }
+resource "github_repository" "github-enterprise" {
+  name       = "github-enterprise"
+  visibility = var.github_plan == "Enterprise" ? "internal" : "public"
+}
 
-# resource "github_repository_collaborator" "ghe-access" {
-#   for_each   = var.members
-#   repository = github_repository.github-enterprise.name
-#   username   = each.value
-#   permission = "push"
-# }
+resource "github_repository_collaborator" "ghe-access" {
+  for_each   = var.members
+  repository = github_repository.github-enterprise.name
+  username   = each.value
+  permission = "push"
+}
 
 # 422 Only organizations associated with an enterprise can set visibility to internal []
 # resource "github_repository" "discussions" {
@@ -126,23 +126,23 @@ resource "github_repository" "github-templates" {
 }
 
 # 422 Only organizations associated with an enterprise can set visibility to internal []
-# resource "github_repository" "tfmod_repo" {
-#   for_each   = var.tf_module_repos
-#   name       = "tf-${replace(lower(each.key), " ", "")}"
-#   visibility = "internal"
-#   lifecycle {
-#     ignore_changes = [
-#       description
-#     ]
-#   }
-# }
+resource "github_repository" "tfmod_repo" {
+  for_each   = var.tf_module_repos
+  name       = "tf-${replace(lower(each.key), " ", "")}"
+  visibility = var.github_plan == "Enterprise" ? "internal" : "private"
+  lifecycle {
+    ignore_changes = [
+      description
+    ]
+  }
+}
 
-# resource "github_team_repository" "tfmod_team_repo" {
-#   for_each   = var.tf_module_repos
-#   team_id    = github_team.team["Cloud Ops"].id
-#   repository = github_repository.tfmod_repo[each.value].name
-#   permission = "push"
-# }
+resource "github_team_repository" "tfmod_team_repo" {
+  for_each   = var.tf_module_repos
+  team_id    = github_team.team["Cloud Ops"].id
+  repository = github_repository.tfmod_repo[each.value].name
+  permission = "push"
+}
 
 resource "github_membership" "admin" {
   for_each = var.admins
