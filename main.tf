@@ -47,46 +47,47 @@ resource "github_organization_settings" "org" {
   members_can_create_repositories         = false
 }
 
-resource "github_organization_ruleset" "master-branch-protection" {
-  name        = "Master Branch Protection"
-  target      = "branch"
-  enforcement = "active"
+# 403 Upgrade to GitHub Enterprise to enable this feature.
+# resource "github_organization_ruleset" "master-branch-protection" {
+#   name        = "Master Branch Protection"
+#   target      = "branch"
+#   enforcement = "active"
 
-  bypass_actors {
-    actor_id    = 1
-    actor_type  = "OrganizationAdmin"
-    bypass_mode = "always"
-  }
+#   bypass_actors {
+#     actor_id    = 1
+#     actor_type  = "OrganizationAdmin"
+#     bypass_mode = "always"
+#   }
 
-  conditions {
-    ref_name {
-      exclude = []
-      include = [
-        "~DEFAULT_BRANCH",
-      ]
-    }
+#   conditions {
+#     ref_name {
+#       exclude = []
+#       include = [
+#         "~DEFAULT_BRANCH",
+#       ]
+#     }
 
-    repository_name {
-      exclude = []
-      include = [
-        "~ALL",
-      ]
-      protected = false
-    }
-  }
+#     repository_name {
+#       exclude = []
+#       include = [
+#         "~ALL",
+#       ]
+#       protected = false
+#     }
+#   }
 
-  rules {
-    deletion         = true
-    non_fast_forward = true
-    pull_request {
-      dismiss_stale_reviews_on_push     = true
-      require_code_owner_review         = false
-      require_last_push_approval        = false
-      required_approving_review_count   = 1
-      required_review_thread_resolution = false
-    }
-  }
-}
+#   rules {
+#     deletion         = true
+#     non_fast_forward = true
+#     pull_request {
+#       dismiss_stale_reviews_on_push     = true
+#       require_code_owner_review         = false
+#       require_last_push_approval        = false
+#       required_approving_review_count   = 1
+#       required_review_thread_resolution = false
+#     }
+#   }
+# }
 
 data "github_user" "admin-user" {
   for_each = var.admins
@@ -98,10 +99,11 @@ data "github_user" "member-user" {
   username = each.value
 }
 
-resource "github_repository" "github-enterprise" {
-  name       = "github-enterprise"
-  visibility = "internal"
-}
+# 422 Only organizations associated with an enterprise can set visibility to internal [{Resource:Repository Field:name Code:custom Message:name already exists on this account}]
+# resource "github_repository" "github-enterprise" {
+#   name       = "github-enterprise"
+#   visibility = "internal"
+# }
 
 resource "github_repository_collaborator" "ghe-access" {
   for_each   = var.members
@@ -110,11 +112,12 @@ resource "github_repository_collaborator" "ghe-access" {
   permission = "push"
 }
 
-resource "github_repository" "discussions" {
-  name            = "discussions"
-  visibility      = "internal"
-  has_discussions = true
-}
+# 422 Only organizations associated with an enterprise can set visibility to internal []
+# resource "github_repository" "discussions" {
+#   name            = "discussions"
+#   visibility      = "internal"
+#   has_discussions = true
+# }
 
 resource "github_repository" "github-templates" {
   name                 = ".github"
@@ -122,16 +125,17 @@ resource "github_repository" "github-templates" {
   vulnerability_alerts = true
 }
 
-resource "github_repository" "tfmod_repo" {
-  for_each   = var.tf_module_repos
-  name       = "tf-${replace(lower(each.key), " ", "")}"
-  visibility = "internal"
-  lifecycle {
-    ignore_changes = [
-      description
-    ]
-  }
-}
+# 422 Only organizations associated with an enterprise can set visibility to internal []
+# resource "github_repository" "tfmod_repo" {
+#   for_each   = var.tf_module_repos
+#   name       = "tf-${replace(lower(each.key), " ", "")}"
+#   visibility = "internal"
+#   lifecycle {
+#     ignore_changes = [
+#       description
+#     ]
+#   }
+# }
 
 resource "github_team_repository" "tfmod_team_repo" {
   for_each   = var.tf_module_repos
