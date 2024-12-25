@@ -105,12 +105,12 @@ resource "github_repository" "github-enterprise" {
   visibility = var.github_plan == "Enterprise" ? "internal" : "public"
 }
 
-resource "github_repository_collaborator" "ghe-access" {
-  for_each   = var.members
-  repository = github_repository.github-enterprise.name
-  username   = each.value
-  permission = "push"
-}
+# resource "github_repository_collaborator" "ghe-access" {
+#   for_each   = var.members
+#   repository = github_repository.github-enterprise.name
+#   username   = each.value
+#   permission = "push"
+# }
 
 # 422 Only organizations associated with an enterprise can set visibility to internal []
 # resource "github_repository" "discussions" {
