@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.ORG-ADMIN-TOKEN }} #${{ secrets.GITHUB_TOKEN }}
       ARM_USE_OIDC: true # This is required for GitHub Actions to authenticate in Azure using Microsoft's Entra ID application(ARM_CLIENT_ID).
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
