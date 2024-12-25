@@ -1,4 +1,3 @@
 members = [
-  "ArmandoPitotti",
   "ArmandoPitotti02"
 ]
