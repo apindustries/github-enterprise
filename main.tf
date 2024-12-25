@@ -105,12 +105,12 @@ data "github_user" "member-user" {
 #   visibility = "internal"
 # }
 
-resource "github_repository_collaborator" "ghe-access" {
-  for_each   = var.members
-  repository = github_repository.github-enterprise.name
-  username   = each.value
-  permission = "push"
-}
+# resource "github_repository_collaborator" "ghe-access" {
+#   for_each   = var.members
+#   repository = github_repository.github-enterprise.name
+#   username   = each.value
+#   permission = "push"
+# }
 
 # 422 Only organizations associated with an enterprise can set visibility to internal []
 # resource "github_repository" "discussions" {
@@ -137,12 +137,12 @@ resource "github_repository" "github-templates" {
 #   }
 # }
 
-resource "github_team_repository" "tfmod_team_repo" {
-  for_each   = var.tf_module_repos
-  team_id    = github_team.team["Cloud Ops"].id
-  repository = github_repository.tfmod_repo[each.value].name
-  permission = "push"
-}
+# resource "github_team_repository" "tfmod_team_repo" {
+#   for_each   = var.tf_module_repos
+#   team_id    = github_team.team["Cloud Ops"].id
+#   repository = github_repository.tfmod_repo[each.value].name
+#   permission = "push"
+# }
 
 resource "github_membership" "admin" {
   for_each = var.admins
