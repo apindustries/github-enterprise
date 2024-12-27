@@ -98,12 +98,12 @@ data "github_user" "member-user" {
   for_each = var.members
   username = each.value
 }
-resource "github_repository_collaborator" "ghe-access" {
-  for_each   = var.members
-  repository = github_repository.github-enterprise.name
-  username   = each.value
-  permission = "push"
-}
+# resource "github_repository_collaborator" "ghe-access" {
+#   for_each   = var.members
+#   repository = github_repository.github-enterprise.name
+#   username   = each.value
+#   permission = "push"
+# }
 # 422 Repository creation failed. [{Resource:Repository Field:name Code:custom Message:name already exists on this account}]
 # resource "github_repository" "github-enterprise" {
 #   name       = "github-enterprise"
