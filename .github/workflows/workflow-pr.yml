@@ -1,4 +1,4 @@
-name: GitHub Enterprise Terraform
+name: PR - GitHub Enterprise Terraform
 on:
   workflow_dispatch:
   pull_request:
