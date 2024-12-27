@@ -1,0 +1,1 @@
+github_plan = "Team" # Allowed values: ["Free", "Team", "Enterprise"]
