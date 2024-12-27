@@ -1,4 +1,4 @@
-name: GitHub Enterprise Terraform
+name: OLD - GitHub Enterprise Terraform
 on:
   workflow_dispatch:
   push:
