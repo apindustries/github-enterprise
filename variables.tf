@@ -27,5 +27,5 @@ variable "tf_module_repos" {
   type = set(string)
 }
 variable "tf_module_template_repo" {
-  type = set(string)  
+  type = set(string)
 }
