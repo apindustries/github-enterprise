@@ -1,5 +1,5 @@
 tf_module_repos = [
-  "databricks"
+  "tf-module-template"
 ]
 # tf_module_repos = [
 #   "api-connection",
