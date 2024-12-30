@@ -1,5 +1,5 @@
 tf_module_repos = [
-  "tf-module-template"
+  "module-template"
 ]
 # tf_module_repos = [
 #   "api-connection",
