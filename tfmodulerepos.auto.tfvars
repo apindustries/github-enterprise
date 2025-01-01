@@ -1,7 +1,6 @@
-tf_module_repos = []
-# tf_module_repos = [
-#   "module-template"
-# ]
+tf_module_repos = [
+  "module-template"
+]
 # tf_module_repos = [
 #   "api-connection",
 #   "api-management",
