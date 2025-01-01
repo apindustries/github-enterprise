@@ -128,16 +128,38 @@ resource "github_repository" "tfmod_repo" {
       description
     ]
   }
+  auto_init = true
 }
 # Create a README.md file in the root directory of the repository.
 resource "github_repository_file" "tfmod_readme" {
-  for_each   = var.tf_module_repos
-  repository = "tf-${replace(lower(each.key), " ", "")}"
+  for_each   = github_repository.tfmod_repo
+  repository = each.value.name
   branch     = "main"
   file       = "README.md"
   content    = "# This repository contains Terraform scripts."
-  depends_on = [github_repository.tfmod_repo]
+  
+  commit_message      = "Managed by Terraform"
+  commit_author       = "Terraform User"
+  commit_email        = "terraform@example.com"
+  overwrite_on_create = true
+  autocreate_branch   = true
 }
+# resource "github_repository_file" "tfmod_readme" {
+#   for_each   = github_repository.tfmod_repo
+#   repository = split("/",each.value.full_name)[1]
+#   branch     = "main"
+#   file       = "README.md"
+#   content    = "# This repository contains Terraform scripts."
+# }
+
+# resource "github_repository_file" "tfmod_readme" {
+#   for_each   = var.tf_module_repos
+#   repository = "tf-${replace(lower(each.key), " ", "")}"
+#   branch     = "main"
+#   file       = "README.md"
+#   content    = "# This repository contains Terraform scripts."
+#   depends_on = [github_repository.tfmod_repo]
+# }
 resource "github_repository" "team_repo" {
   for_each   = local.team_repos
   name       = each.key

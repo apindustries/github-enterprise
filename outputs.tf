@@ -1,6 +1,6 @@
-output "github_repository_names" {
+output "github_repository_modules_name" {
   value = {
-    for repo in github_repository.module_template_repo : repo.name => repo
+    for repo in github_repository.tfmod_repo : repo.name => repo.name
   }
 
 }
