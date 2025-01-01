@@ -137,7 +137,7 @@ resource "github_repository_file" "tfmod_readme" {
   branch     = "main"
   file       = "README.md"
   content    = "# This repository contains Terraform scripts."
-  
+
   commit_message      = "Managed by Terraform"
   commit_author       = "Terraform User"
   commit_email        = "terraform@example.com"
