@@ -136,7 +136,7 @@ resource "github_repository_file" "tfmod_readme" {
   branch     = "main"
   file       = "README.md"
   content    = "# This repository contains Terraform scripts."
-  depends_on = [ github_repository.tfmod_repo ]
+  depends_on = [github_repository.tfmod_repo]
 }
 resource "github_repository" "team_repo" {
   for_each   = local.team_repos
