@@ -132,10 +132,11 @@ resource "github_repository" "tfmod_repo" {
 # Create a README.md file in the root directory of the repository.
 resource "github_repository_file" "tfmod_readme" {
   for_each   = var.tf_module_repos
-  repository = github_repository.tfmod_repo[each.key].name
+  repository = "tf-${replace(lower(each.key), " ", "")}"
   branch     = "main"
   file       = "README.md"
   content    = "# This repository contains Terraform scripts."
+  depends_on = [github_repository.tfmod_repo]
 }
 resource "github_repository" "team_repo" {
   for_each   = local.team_repos
