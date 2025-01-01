@@ -142,7 +142,7 @@ resource "github_repository_file" "tfmod_readme" {
   commit_author       = "Terraform User"
   commit_email        = "terraform@example.com"
   overwrite_on_create = true
-  autocreate_branch   = true  
+  autocreate_branch   = true
 }
 # resource "github_repository_file" "tfmod_readme" {
 #   for_each   = github_repository.tfmod_repo
